@@ -51,3 +51,15 @@ def build_report(risks: list[ProductRisk]) -> list[dict]:
         report.append(item)
 
     return sorted(report, key=lambda item: item["score"], reverse=True)
+
+if __name__ == "__main__":
+    report = build_report(RISKS)
+    print(json.dumps(report, indent=2))
+
+    # Lightweight verification
+    assert report[0]["product"] == "Orion Display"
+    assert report[0]["score"] == 75.0
+    assert report[0]["status"] == "Critical"
+
+    print("\nChecks passed.")
+    
